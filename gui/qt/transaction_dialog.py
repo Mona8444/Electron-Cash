@@ -115,16 +115,16 @@ class TxDialog(QDialog, MessageBoxMixin):
         self.copy_button = CopyButton(lambda: str(weakSelfRef() and weakSelfRef().tx), parent.app)
 
         # Action buttons
-        self.buttons = [self.sign_button, self.broadcast_button, self.cancel_button]
+        buttons = [self.sign_button, self.broadcast_button, self.cancel_button]
         # Transaction sharing buttons
-        self.sharing_buttons = [self.copy_button, self.qr_button, self.save_button]
+        sharing_buttons = [self.copy_button, self.qr_button, self.save_button]
 
         run_hook('transaction_dialog', self)
 
         hbox = QHBoxLayout()
-        hbox.addLayout(Buttons(*self.sharing_buttons))
+        hbox.addLayout(Buttons(*sharing_buttons))
         hbox.addStretch(1)
-        hbox.addLayout(Buttons(*self.buttons))
+        hbox.addLayout(Buttons(*buttons))
         vbox.addLayout(hbox)
         self.update()
 
